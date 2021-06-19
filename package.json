@@ -4,7 +4,9 @@
   "description": "Social media Website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node express_server.js",
+    "dev": "nodemon express_server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/rogaikwad30/Chat_App_Node_JS/issues"
   },
-  "homepage": "https://github.com/rogaikwad30/Chat_App_Node_JS#readme"
+  "homepage": "https://github.com/rogaikwad30/Chat_App_Node_JS#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14"
+  }
 }
