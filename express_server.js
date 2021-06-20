@@ -13,13 +13,18 @@
 var express = require('express') ;
 var bodyParser = require('body-parser') ;
 var app  = express();
-var urlBodyEncoder = bodyParser.urlencoded({extended:false})
-app.use(bodyParser.json())  
+var urlBodyEncoder = bodyParser.urlencoded({extended:false});
 var userHandlers = require('./controllers/users');
 var mongodb = require('./services/mongodb');
+var loginMiddleware = require('./services/jwt').verifyToken;
+
+app.use(bodyParser.json())  
  
 app.post('/register' , urlBodyEncoder , userHandlers.register );
-app.post('/login' , urlBodyEncoder , userHandlers.login );
+app.post('/login'    , urlBodyEncoder , userHandlers.login );
+app.post('/logout'   , urlBodyEncoder , loginMiddleware , userHandlers.logout );
+app.post('/test'     , urlBodyEncoder , loginMiddleware , userHandlers.test );
+
 
 var server = app.listen(8000);
 console.log("Server running");
