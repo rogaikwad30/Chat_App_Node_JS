@@ -1,8 +1,7 @@
 // express js based server
 /**
  * This code contains a Rest API and socket integration
- * Rest API is used by mobile app, web client etc UIs
- * mqtt is used by NodeMCUs
+ * Rest API is used by mobile app, web client etc UIs 
  *
  * PORTS
  * Rest API - 8000
