@@ -8,7 +8,7 @@ class Database {
   }
 
 _connect() {
-     mongoose.connect("mongodb+srv://<username>:<password>@cluster0.fredc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+     mongoose.connect("mongodb+srv://rohan:rohan@cluster0.htxej.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true,
