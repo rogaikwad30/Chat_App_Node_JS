@@ -14,7 +14,7 @@ var path = require('path') ;
 var bodyParser = require('body-parser') ;
 var app  = express();
 var urlBodyEncoder = bodyParser.urlencoded({extended:false});
-var userHandlers = require('./controllers/users');
+var authHandlers = require('./controllers/auth_handlers');
 var mongodb = require('./services/mongodb');
 var loginMiddleware = require('./services/jwt').verifyToken;
 app.use(bodyParser.json())  
@@ -23,13 +23,13 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 
-app.get('/', urlBodyEncoder , (req , res)=>{
-    res.render('index');
-})
-app.post('/register' , urlBodyEncoder , userHandlers.register );
-app.post('/login'    , urlBodyEncoder , userHandlers.login );
-app.post('/logout'   , urlBodyEncoder , loginMiddleware , userHandlers.logout );
-app.post('/test'     , urlBodyEncoder , loginMiddleware , userHandlers.test );
+app.get('/', urlBodyEncoder , authHandlers.getHome )
+app.get('/register', urlBodyEncoder , authHandlers.getRegister )
+
+app.post('/register' , urlBodyEncoder , authHandlers.postRegister );
+app.post('/login'    , urlBodyEncoder , authHandlers.login );
+app.post('/logout'   , urlBodyEncoder , loginMiddleware , authHandlers.logout );
+app.post('/test'     , urlBodyEncoder , loginMiddleware , authHandlers.test );
 
 
 

@@ -8,7 +8,7 @@ class Database {
   }
 
 _connect() {
-     mongoose.connect("mongodb+srv://rohan:rohan@cluster0.htxej.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+     mongoose.connect("mongodb://localhost:27017/chatApp",
     {
       useNewUrlParser: true,
       useCreateIndex: true,
