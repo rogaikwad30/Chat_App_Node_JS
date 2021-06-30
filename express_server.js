@@ -24,10 +24,10 @@ app.use(express.static('public'))
 
 
 app.get('/', urlBodyEncoder , authHandlers.getHome )
-app.get('/register', urlBodyEncoder , authHandlers.getRegister )
-
+app.get('/login', urlBodyEncoder , authHandlers.getLogin )
+app.post('/login'    , urlBodyEncoder , authHandlers.postLogin )
+app.get('/register', urlBodyEncoder , authHandlers.getRegister ) 
 app.post('/register' , urlBodyEncoder , authHandlers.postRegister );
-app.post('/login'    , urlBodyEncoder , authHandlers.login );
 app.post('/logout'   , urlBodyEncoder , loginMiddleware , authHandlers.logout );
 app.post('/test'     , urlBodyEncoder , loginMiddleware , authHandlers.test );
 

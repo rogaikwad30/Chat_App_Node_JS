@@ -27,7 +27,9 @@ module.exports.getHome = async(req, res)=>{
 module.exports.getRegister = async(req, res)=>{
     res.render('register' , {error : ""})
 }
- 
+module.exports.getLogin = async(req, res)=>{
+    res.render('login' , {error : ""})
+}
 module.exports.postRegister = async (req, res) => {
     try {
         const user = await userModel.create({...req.body  , "name" : req.body.firstName +" " + req.body.lastName});
@@ -43,35 +45,29 @@ module.exports.postRegister = async (req, res) => {
         res.render('register' , {error : key+" "+value}) ;
     }
 }
-
-
-module.exports.login = async (req, res) => {
-    const { username , password } = req.body;
+module.exports.postLogin = async (req, res) => {
+    const { email , password } = req.body;
     try {
-        const user = await userModel.login(username , password );
+        const user = await userModel.login(email , password );
         const token = await jwtServices.createToken(user._id);
         const refreshToken = await jwtServices.createRefreshToken(user._id);
         res.cookie('jwt', token, { httpOnly: true });
         res.cookie('refreshJwt', refreshToken, { httpOnly: true })
         const response = {
-            "status": user.username + " is logged in successfully .",
+            "status": user.email+ " is logged in successfully .",
             "token" : token ,
             "refreshToken" : refreshToken
         }
         res.json(response).status(200);
-    } catch (error) { 
-        res.status(400).json({"Error":error.message});
+    } catch (error) {  
+        res.render('login' , {error : error.message }) ;
     }
 }
-
-
 module.exports.logout = async (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.cookie('refreshJwt', '', { maxAge: 1 });
     res.json({ "Msg ": "Logout successfully" }).status(200)
 }
-
-
 module.exports.test = async (req ,res)=>{
     res.json(req.user);
 }

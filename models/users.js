@@ -23,8 +23,8 @@ let UserSchema = new mongoose.Schema({
 })
 
    
-UserSchema.statics.login = async function(username, password) {
-    const user = await this.findOne({ "username" :  username });
+UserSchema.statics.login = async function(email, password) {
+    const user = await this.findOne({ "email" :  email });
     if (user) {
       const auth = await bcryptjs.compareSync(password , user.password)
       if (auth) {
@@ -32,7 +32,7 @@ UserSchema.statics.login = async function(username, password) {
       }
       throw Error('incorrect password');
     }
-    throw Error('incorrect username');
+    throw Error('incorrect email');
 };
 
 
