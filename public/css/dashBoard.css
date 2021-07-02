@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    min-width: 100vw;
+    background:  linear-gradient(rgba(0,0,0,0.45) , rgba(0,0,0,0.8)) ,url(../images/arch-6356637_1920.jpg) fixed no-repeat;
+    background-size: cover; 
+    z-index: -1;
+}
+
+
+.search-box{
+    background: white;
+    margin-top: 55px;
+    padding: 25px 30px;
+    z-index: 1;
+}
+
+.search-box i{
+    text-align: center;
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.search-box i:hover{
+    cursor: pointer;
+    color: rgb(47, 157, 0); 
+    transition: all 0.3s linear;
+}
+
+.users-list{
+    padding: 5px;
+}
+
+
+.users-list .user{ 
+    position: relative;
+}
+
+
+.users-list .user i{
+    font-size: 33px;
+    border-radius: 50%; 
+}
+
+ 
+
+.users-list .user a{
+    text-decoration: none; 
+    border-bottom: 2px solid blueviolet;
+    padding-bottom: 5px;
+    font-size: small;
+    font-weight: bold;
+    display: block; 
+}
+
+ .u-info{
+     position: absolute;
+     top: 50%;
+     transform: translate(8%,-50%);
+ }

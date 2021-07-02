@@ -36,7 +36,7 @@ module.exports.postRegister = async (req, res) => {
         const response = {
             "status": user.email + " is Registered successfully .",
         }
-        return res.json(response).status(201);
+        res.redirect('dashBoard');
     } catch (error) {
         const message = checkErrors(error);
         const key = Object.keys(message)[0]
@@ -58,7 +58,7 @@ module.exports.postLogin = async (req, res) => {
             "token" : token ,
             "refreshToken" : refreshToken
         }
-        res.json(response).status(200);
+        res.redirect('dashBoard');
     } catch (error) {  
         res.render('login' , {error : error.message }) ;
     }
@@ -68,11 +68,22 @@ module.exports.logout = async (req, res) => {
     res.cookie('refreshJwt', '', { maxAge: 1 });
     res.json({ "Msg ": "Logout successfully" }).status(200)
 }
+module.exports.getDashBoard = async(req, res)=>{
+    res.render('dash_board')
+}
 module.exports.test = async (req ,res)=>{
     res.json(req.user);
 }
 
-
+module.exports.searchUser = async (req,res)=>{
+    const email = req.params.id;
+    try {
+        const response = await userModel.find({ "email": { "$regex": email, "$options": "i" } });
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json(error.message);
+    }
+}
 
 
 

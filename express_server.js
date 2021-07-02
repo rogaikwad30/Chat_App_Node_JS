@@ -27,11 +27,12 @@ app.get('/', urlBodyEncoder , authHandlers.getHome )
 app.get('/login', urlBodyEncoder , authHandlers.getLogin )
 app.post('/login'    , urlBodyEncoder , authHandlers.postLogin )
 app.get('/register', urlBodyEncoder , authHandlers.getRegister ) 
-app.post('/register' , urlBodyEncoder , authHandlers.postRegister );
+app.post('/register' , urlBodyEncoder , authHandlers.postRegister )
+app.get('/dashBoard', urlBodyEncoder ,  loginMiddleware , authHandlers.getDashBoard)
 app.post('/logout'   , urlBodyEncoder , loginMiddleware , authHandlers.logout );
 app.post('/test'     , urlBodyEncoder , loginMiddleware , authHandlers.test );
 
-
+app.get('/search-user/:id' , urlBodyEncoder , authHandlers.searchUser)
 
 var server = app.listen(8000);
 console.log("Server running");
